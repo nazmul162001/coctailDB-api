@@ -23,6 +23,10 @@ const searchDrink = () => {
       // empty element
       cardContainer.textContent = '';
 
+      // empty details container 
+      const detailsContainer = document.getElementById('details-container');
+      detailsContainer.textContent = '';
+
         // handling 
       const getHandling = document.getElementById('handling');
       getHandling.classList.add('d-none')
