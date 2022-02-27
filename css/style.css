@@ -8,3 +8,6 @@ body{
   height: 100vh;
   background-color: rgba(137, 43, 226, 0.459);
 }
+#spinner{
+  display: none;
+}

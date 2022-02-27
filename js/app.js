@@ -1,6 +1,8 @@
 const searchDrink = () => {
   const searchText = document.getElementById('search-field').value;
   console.log(searchText);
+  const getSpinner = document.getElementById('spinner');
+  getSpinner.classList.remove('d-none');
   const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchText}`
 
   fetch(url)
@@ -29,6 +31,8 @@ const displayDrink = info => {
       </div>
     </div>
   `
+  const getSpinner = document.getElementById('spinner');
+  getSpinner.classList.add('d-none');
   cardContainer.appendChild(div);
   })
 }
@@ -48,9 +52,9 @@ const displaySingleDetails = singleDetails => {
   // empty element 
   cardContainer.textContent = '';
   const div = document.createElement('div');
-  div.classList.add('col-lg-4', 'col-md-4', 'col-sm-6', 'col-12');
+  div.classList.add('col');
   div.innerHTML = `
-  <div class="card mb-5" style="width: 20rem;">
+  <div class="card mb-5 w-50">
   <img src="${singleDetails.strDrinkThumb}" class="card-img-top p-4" alt="...">
     <div class="card-body">
       <h5 class="card-title">${singleDetails.strIngredient3}</h5>
