@@ -2,9 +2,11 @@ const searchDrink = () => {
   const searchField = document.getElementById('search-field');
   const searchText = searchField.value;
   console.log(searchText);
+  // hide spinner 
   const getSpinner = document.getElementById('spinner');
   getSpinner.classList.remove('d-none');
   // document.getElementById('card-container').style.display = 'none';
+
   
   const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchText}`
 
@@ -20,17 +22,38 @@ const searchDrink = () => {
       const cardContainer = document.getElementById('card-container');
       // empty element
       cardContainer.textContent = '';
+
+        // handling 
+      const getHandling = document.getElementById('handling');
+      getHandling.classList.add('d-none')
     }
     else{
       displayDrink(data.drinks)
       const errHandling = document.getElementById('err');
       errHandling.classList.add('d-none');
+
+        // handling 
+      const getHandling = document.getElementById('handling');
+      getHandling.classList.remove('d-none')
     }
   });
 }
 
 const displayDrink = info => {
-  // console.log(info);
+  // console.log(info, info.length);
+  // handling content 
+  const getHandling = document.getElementById('handling');
+  // hide previous handling text 
+  getHandling.textContent = '';
+  // creat & showing handling text 
+  const p = document.createElement('p');
+  p.classList.add('text-center', 'text-primary', 'fs-5');
+  p.innerHTML = `
+      Showing total of ${info.length} result 😊
+  `
+  getHandling.appendChild(p);
+
+
   const cardContainer = document.getElementById('card-container');
   // empty element
   cardContainer.textContent = '';
