@@ -14,7 +14,7 @@ const searchDrink = () => {
   .then(res => res.json())
   .then(data => {
     if(data.drinks === null || searchField.value === '' || typeof(searchField.value) === !String){
-      console.log('not found');
+      // console.log('not found');
       getSpinner.classList.add('d-none');
       searchField.value = '';
       const errHandling = document.getElementById('err');
@@ -78,13 +78,17 @@ const displayDrink = info => {
   `;
   // append chile 
   cardContainer.appendChild(div);
-  })
+  });
     // hide spinner 
     const getSpinner = document.getElementById('spinner');
     getSpinner.classList.add('d-none');
     // document.getElementById('card-container').style.display = 'block';
     // empty searchField 
     document.getElementById('search-field').value = '';
+
+          // empty details container 
+    const detailsContainer = document.getElementById('details-container');
+    detailsContainer.textContent = '';
 }
 
 const seeDetails = single => {
@@ -109,7 +113,7 @@ const displaySingleDetails = singleDetails => {
     <div class="card-body">
       <h5 class="card-title">${singleDetails.strIngredient3}</h5>
       <p class="card-text">${singleDetails.strInstructions.slice(0, 50)}</p>
-      <button onclick="seeDetails('${singleDetails.idDrink}')" class="btn btn-primary">See Details</button>
+      <button onclick="removeDetails('${singleDetails.idDrink}')" class="btn btn-primary">See Details</button>
     </div>
   </div>
   `;
