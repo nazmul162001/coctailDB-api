@@ -8,7 +8,6 @@ const searchDrink = () => {
   fetch(url)
   .then(res => res.json())
   .then(data => displayDrink(data.drinks));
-  document.getElementById('search-field').value = '';
 }
 
 const displayDrink = info => {
@@ -30,9 +29,13 @@ const displayDrink = info => {
         <button onclick="seeDetails('${drink.idDrink}')" class="btn btn-primary">See Details</button>
       </div>
     </div>
-  `
+  `;
+  // hide spinner 
   const getSpinner = document.getElementById('spinner');
   getSpinner.classList.add('d-none');
+  // empty searchField 
+  document.getElementById('search-field').value = '';
+  // append chile 
   cardContainer.appendChild(div);
   })
 }
