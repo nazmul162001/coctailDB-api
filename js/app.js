@@ -1,13 +1,32 @@
 const searchDrink = () => {
-  const searchText = document.getElementById('search-field').value;
+  const searchField = document.getElementById('search-field');
+  const searchText = searchField.value;
   console.log(searchText);
   const getSpinner = document.getElementById('spinner');
   getSpinner.classList.remove('d-none');
+  // document.getElementById('card-container').style.display = 'none';
+  
   const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchText}`
 
   fetch(url)
   .then(res => res.json())
-  .then(data => displayDrink(data.drinks));
+  .then(data => {
+    if(data.drinks === null || searchField.value === '' || typeof(searchField.value) === !String){
+      console.log('not found');
+      getSpinner.classList.add('d-none');
+      searchField.value = '';
+      const errHandling = document.getElementById('err');
+      errHandling.classList.remove('d-none');
+      const cardContainer = document.getElementById('card-container');
+      // empty element
+      cardContainer.textContent = '';
+    }
+    else{
+      displayDrink(data.drinks)
+      const errHandling = document.getElementById('err');
+      errHandling.classList.add('d-none');
+    }
+  });
 }
 
 const displayDrink = info => {
@@ -30,14 +49,15 @@ const displayDrink = info => {
       </div>
     </div>
   `;
-  // hide spinner 
-  const getSpinner = document.getElementById('spinner');
-  getSpinner.classList.add('d-none');
-  // empty searchField 
-  document.getElementById('search-field').value = '';
   // append chile 
   cardContainer.appendChild(div);
   })
+    // hide spinner 
+    const getSpinner = document.getElementById('spinner');
+    getSpinner.classList.add('d-none');
+    // document.getElementById('card-container').style.display = 'block';
+    // empty searchField 
+    document.getElementById('search-field').value = '';
 }
 
 const seeDetails = single => {
