@@ -7,9 +7,24 @@ body{
   width: 100%;
   height: 100vh;
   background-color: rgba(137, 43, 226, 0.459);
-  display: flex;
-  justify-content: center;
 }
-#spinner{
-  display: none;
+#details{
+  width: 400px;
+  height: 650px;
+  background-color: transparent;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 35%;
+  z-index: 999;
+  position: fixed;
+}
+.custom-card{
+  width: 650px;
+  height: 500px;
+  overflow-y: scroll;
+}
+.custom-card img{
+  width: 100%;
+  height: 350px;
 }
